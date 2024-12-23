@@ -1,0 +1,1145 @@
+{
+   "library" : {
+      "annotation" : [ {
+         "translatorVersion" : "2.9.0",
+         "translatorOptions" : "",
+         "type" : "CqlToElmInfo"
+      } ],
+      "identifier" : {
+         "id" : "USPSTFPrediabetesAndType2DiabetesSharedLogicFHIRv401",
+         "version" : "1.1.0"
+      },
+      "schemaIdentifier" : {
+         "id" : "urn:hl7-org:elm",
+         "version" : "r1"
+      },
+      "usings" : {
+         "def" : [ {
+            "localIdentifier" : "System",
+            "uri" : "urn:hl7-org:elm-types:r1"
+         }, {
+            "localIdentifier" : "FHIR",
+            "uri" : "http://hl7.org/fhir",
+            "version" : "4.0.1"
+         } ]
+      },
+      "includes" : {
+         "def" : [ {
+            "localIdentifier" : "FHIRHelpers",
+            "path" : "FHIRHelpers",
+            "version" : "4.0.1"
+         }, {
+            "localIdentifier" : "C3F",
+            "path" : "CDSConnectCommonsForFHIRv401",
+            "version" : "2.1.0"
+         } ]
+      },
+      "codeSystems" : {
+         "def" : [ {
+            "name" : "ICD-9-CM",
+            "id" : "http://hl7.org/fhir/sid/icd-9-cm",
+            "accessLevel" : "Public"
+         }, {
+            "name" : "ICD-10-CM",
+            "id" : "http://hl7.org/fhir/sid/icd-10-cm",
+            "accessLevel" : "Public"
+         }, {
+            "name" : "LOINC",
+            "id" : "http://loinc.org",
+            "accessLevel" : "Public"
+         }, {
+            "name" : "Race & Ethnicity - CDC",
+            "id" : "urn:oid:2.16.840.1.113883.6.238",
+            "accessLevel" : "Public"
+         }, {
+            "name" : "SNOMED-CT",
+            "id" : "http://snomed.info/sct",
+            "accessLevel" : "Public"
+         } ]
+      },
+      "valueSets" : {
+         "def" : [ {
+            "name" : "First Degree Family Member",
+            "id" : "https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1032.92",
+            "accessLevel" : "Public"
+         }, {
+            "name" : "Diabetes",
+            "id" : "https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.103.12.1001",
+            "accessLevel" : "Public"
+         }, {
+            "name" : "Gestational diabetes",
+            "id" : "https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1032.90",
+            "accessLevel" : "Public"
+         }, {
+            "name" : "Polycystic Ovary Syndrome",
+            "id" : "https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1032.151",
+            "accessLevel" : "Public"
+         }, {
+            "name" : "CDS Pregnancy",
+            "id" : "https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1032.264",
+            "accessLevel" : "Public"
+         } ]
+      },
+      "codes" : {
+         "def" : [ {
+            "name" : "Black or African American",
+            "id" : "2054-5",
+            "display" : "Black or African American",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "Race & Ethnicity - CDC"
+            }
+         }, {
+            "name" : "American Indian or Alaska Native",
+            "id" : "1002-5",
+            "display" : "American Indian or Alaska Native",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "Race & Ethnicity - CDC"
+            }
+         }, {
+            "name" : "Native Hawaiian or Other Pacific Islander",
+            "id" : "2076-8",
+            "display" : "Native Hawaiian or Other Pacific Islander",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "Race & Ethnicity - CDC"
+            }
+         }, {
+            "name" : "Asian",
+            "id" : "2028-9",
+            "display" : "Asian",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "Race & Ethnicity - CDC"
+            }
+         }, {
+            "name" : "Hispanic or Latino",
+            "id" : "2135-2",
+            "display" : "Hispanic or Latino",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "Race & Ethnicity - CDC"
+            }
+         }, {
+            "name" : "Body mass index",
+            "id" : "39156-5",
+            "display" : "Body mass index (BMI) [Ratio]",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "LOINC"
+            }
+         }, {
+            "name" : "Polycystic ovarian syndrome code",
+            "id" : "E28.2",
+            "display" : "Polycystic ovarian syndrome",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "ICD-10-CM"
+            }
+         }, {
+            "name" : "Polycystic ovaries code",
+            "id" : "256.4",
+            "display" : "Polycystic ovaries",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "ICD-9-CM"
+            }
+         }, {
+            "name" : "Pregnancy status",
+            "id" : "82810-3",
+            "display" : "Pregnancy status",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "LOINC"
+            }
+         }, {
+            "name" : "Pregnant",
+            "id" : "77386006",
+            "display" : "Patient currently pregnant (finding)",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "SNOMED-CT"
+            }
+         } ]
+      },
+      "concepts" : {
+         "def" : [ {
+            "name" : "Polycystic ovarian syndrome",
+            "display" : "Polycystic ovarian syndrome",
+            "accessLevel" : "Public",
+            "code" : [ {
+               "name" : "Polycystic ovarian syndrome code"
+            }, {
+               "name" : "Polycystic ovaries code"
+            } ]
+         } ]
+      },
+      "contexts" : {
+         "def" : [ {
+            "name" : "Patient"
+         } ]
+      },
+      "statements" : {
+         "def" : [ {
+            "name" : "Patient",
+            "context" : "Patient",
+            "expression" : {
+               "type" : "SingletonFrom",
+               "operand" : {
+                  "dataType" : "{http://hl7.org/fhir}Patient",
+                  "templateId" : "http://hl7.org/fhir/StructureDefinition/Patient",
+                  "type" : "Retrieve"
+               }
+            }
+         }, {
+            "name" : "RaceExtension",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "SingletonFrom",
+               "operand" : {
+                  "type" : "Query",
+                  "source" : [ {
+                     "alias" : "Extension",
+                     "expression" : {
+                        "path" : "extension",
+                        "type" : "Property",
+                        "source" : {
+                           "name" : "Patient",
+                           "type" : "ExpressionRef"
+                        }
+                     }
+                  } ],
+                  "relationship" : [ ],
+                  "where" : {
+                     "type" : "Equal",
+                     "operand" : [ {
+                        "path" : "value",
+                        "type" : "Property",
+                        "source" : {
+                           "path" : "url",
+                           "scope" : "Extension",
+                           "type" : "Property"
+                        }
+                     }, {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+                        "type" : "Literal"
+                     } ]
+                  }
+               }
+            }
+         }, {
+            "name" : "RaceCodes",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Query",
+               "source" : [ {
+                  "alias" : "Extension",
+                  "expression" : {
+                     "path" : "extension",
+                     "type" : "Property",
+                     "source" : {
+                        "name" : "RaceExtension",
+                        "type" : "ExpressionRef"
+                     }
+                  }
+               } ],
+               "relationship" : [ ],
+               "where" : {
+                  "type" : "Equal",
+                  "operand" : [ {
+                     "path" : "value",
+                     "type" : "Property",
+                     "source" : {
+                        "path" : "url",
+                        "scope" : "Extension",
+                        "type" : "Property"
+                     }
+                  }, {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "ombCategory",
+                     "type" : "Literal"
+                  } ]
+               },
+               "return" : {
+                  "expression" : {
+                     "name" : "ToCode",
+                     "libraryName" : "FHIRHelpers",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "strict" : false,
+                        "type" : "As",
+                        "operand" : {
+                           "path" : "value",
+                           "scope" : "Extension",
+                           "type" : "Property"
+                        },
+                        "asTypeSpecifier" : {
+                           "name" : "{http://hl7.org/fhir}Coding",
+                           "type" : "NamedTypeSpecifier"
+                        }
+                     } ]
+                  }
+               }
+            }
+         }, {
+            "name" : "EthnicityExtension",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "SingletonFrom",
+               "operand" : {
+                  "type" : "Query",
+                  "source" : [ {
+                     "alias" : "Extension",
+                     "expression" : {
+                        "path" : "extension",
+                        "type" : "Property",
+                        "source" : {
+                           "name" : "Patient",
+                           "type" : "ExpressionRef"
+                        }
+                     }
+                  } ],
+                  "relationship" : [ ],
+                  "where" : {
+                     "type" : "Equal",
+                     "operand" : [ {
+                        "path" : "value",
+                        "type" : "Property",
+                        "source" : {
+                           "path" : "url",
+                           "scope" : "Extension",
+                           "type" : "Property"
+                        }
+                     }, {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+                        "type" : "Literal"
+                     } ]
+                  }
+               }
+            }
+         }, {
+            "name" : "EthnicityCode",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "SingletonFrom",
+               "operand" : {
+                  "type" : "Query",
+                  "source" : [ {
+                     "alias" : "Extension",
+                     "expression" : {
+                        "path" : "extension",
+                        "type" : "Property",
+                        "source" : {
+                           "name" : "EthnicityExtension",
+                           "type" : "ExpressionRef"
+                        }
+                     }
+                  } ],
+                  "relationship" : [ ],
+                  "where" : {
+                     "type" : "Equal",
+                     "operand" : [ {
+                        "path" : "value",
+                        "type" : "Property",
+                        "source" : {
+                           "path" : "url",
+                           "scope" : "Extension",
+                           "type" : "Property"
+                        }
+                     }, {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "ombCategory",
+                        "type" : "Literal"
+                     } ]
+                  },
+                  "return" : {
+                     "expression" : {
+                        "name" : "ToCode",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "strict" : false,
+                           "type" : "As",
+                           "operand" : {
+                              "path" : "value",
+                              "scope" : "Extension",
+                              "type" : "Property"
+                           },
+                           "asTypeSpecifier" : {
+                              "name" : "{http://hl7.org/fhir}Coding",
+                              "type" : "NamedTypeSpecifier"
+                           }
+                        } ]
+                     }
+                  }
+               }
+            }
+         }, {
+            "name" : "IsAfricanAmerican",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "If",
+               "condition" : {
+                  "type" : "Exists",
+                  "operand" : {
+                     "name" : "RaceCodes",
+                     "type" : "ExpressionRef"
+                  }
+               },
+               "then" : {
+                  "type" : "Exists",
+                  "operand" : {
+                     "type" : "Query",
+                     "source" : [ {
+                        "alias" : "Race",
+                        "expression" : {
+                           "name" : "RaceCodes",
+                           "type" : "ExpressionRef"
+                        }
+                     } ],
+                     "relationship" : [ ],
+                     "where" : {
+                        "type" : "Equivalent",
+                        "operand" : [ {
+                           "name" : "Race",
+                           "type" : "AliasRef"
+                        }, {
+                           "name" : "Black or African American",
+                           "type" : "CodeRef"
+                        } ]
+                     }
+                  }
+               },
+               "else" : {
+                  "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                  "type" : "As",
+                  "operand" : {
+                     "type" : "Null"
+                  }
+               }
+            }
+         }, {
+            "name" : "IsAmericanIndianOrAlaskaNative",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "If",
+               "condition" : {
+                  "type" : "Exists",
+                  "operand" : {
+                     "name" : "RaceCodes",
+                     "type" : "ExpressionRef"
+                  }
+               },
+               "then" : {
+                  "type" : "Exists",
+                  "operand" : {
+                     "type" : "Query",
+                     "source" : [ {
+                        "alias" : "Race",
+                        "expression" : {
+                           "name" : "RaceCodes",
+                           "type" : "ExpressionRef"
+                        }
+                     } ],
+                     "relationship" : [ ],
+                     "where" : {
+                        "type" : "Equivalent",
+                        "operand" : [ {
+                           "name" : "Race",
+                           "type" : "AliasRef"
+                        }, {
+                           "name" : "American Indian or Alaska Native",
+                           "type" : "CodeRef"
+                        } ]
+                     }
+                  }
+               },
+               "else" : {
+                  "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                  "type" : "As",
+                  "operand" : {
+                     "type" : "Null"
+                  }
+               }
+            }
+         }, {
+            "name" : "IsNativeHawaiianOrOtherPacificIslander",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "If",
+               "condition" : {
+                  "type" : "Exists",
+                  "operand" : {
+                     "name" : "RaceCodes",
+                     "type" : "ExpressionRef"
+                  }
+               },
+               "then" : {
+                  "type" : "Exists",
+                  "operand" : {
+                     "type" : "Query",
+                     "source" : [ {
+                        "alias" : "Race",
+                        "expression" : {
+                           "name" : "RaceCodes",
+                           "type" : "ExpressionRef"
+                        }
+                     } ],
+                     "relationship" : [ ],
+                     "where" : {
+                        "type" : "Equivalent",
+                        "operand" : [ {
+                           "name" : "Race",
+                           "type" : "AliasRef"
+                        }, {
+                           "name" : "Native Hawaiian or Other Pacific Islander",
+                           "type" : "CodeRef"
+                        } ]
+                     }
+                  }
+               },
+               "else" : {
+                  "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                  "type" : "As",
+                  "operand" : {
+                     "type" : "Null"
+                  }
+               }
+            }
+         }, {
+            "name" : "IsAsian",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "If",
+               "condition" : {
+                  "type" : "Exists",
+                  "operand" : {
+                     "name" : "RaceCodes",
+                     "type" : "ExpressionRef"
+                  }
+               },
+               "then" : {
+                  "type" : "Exists",
+                  "operand" : {
+                     "type" : "Query",
+                     "source" : [ {
+                        "alias" : "Race",
+                        "expression" : {
+                           "name" : "RaceCodes",
+                           "type" : "ExpressionRef"
+                        }
+                     } ],
+                     "relationship" : [ ],
+                     "where" : {
+                        "type" : "Equivalent",
+                        "operand" : [ {
+                           "name" : "Race",
+                           "type" : "AliasRef"
+                        }, {
+                           "name" : "Asian",
+                           "type" : "CodeRef"
+                        } ]
+                     }
+                  }
+               },
+               "else" : {
+                  "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                  "type" : "As",
+                  "operand" : {
+                     "type" : "Null"
+                  }
+               }
+            }
+         }, {
+            "name" : "IsHispanicOrLatino",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "If",
+               "condition" : {
+                  "type" : "Not",
+                  "operand" : {
+                     "type" : "IsNull",
+                     "operand" : {
+                        "name" : "EthnicityCode",
+                        "type" : "ExpressionRef"
+                     }
+                  }
+               },
+               "then" : {
+                  "type" : "Equivalent",
+                  "operand" : [ {
+                     "name" : "EthnicityCode",
+                     "type" : "ExpressionRef"
+                  }, {
+                     "name" : "Hispanic or Latino",
+                     "type" : "CodeRef"
+                  } ]
+               },
+               "else" : {
+                  "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                  "type" : "As",
+                  "operand" : {
+                     "type" : "Null"
+                  }
+               }
+            }
+         }, {
+            "name" : "MostRecentBodyMassIndexMeasurement",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "name" : "MostRecent",
+               "libraryName" : "C3F",
+               "type" : "FunctionRef",
+               "operand" : [ {
+                  "name" : "Verified",
+                  "libraryName" : "C3F",
+                  "type" : "FunctionRef",
+                  "operand" : [ {
+                     "dataType" : "{http://hl7.org/fhir}Observation",
+                     "templateId" : "http://hl7.org/fhir/StructureDefinition/Observation",
+                     "codeProperty" : "code",
+                     "codeComparator" : "~",
+                     "type" : "Retrieve",
+                     "codes" : {
+                        "type" : "ToList",
+                        "operand" : {
+                           "name" : "Body mass index",
+                           "type" : "CodeRef"
+                        }
+                     }
+                  } ]
+               } ]
+            }
+         }, {
+            "name" : "MostRecentBodyMassIndexValue",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "name" : "QuantityValue",
+               "libraryName" : "C3F",
+               "type" : "FunctionRef",
+               "operand" : [ {
+                  "name" : "MostRecentBodyMassIndexMeasurement",
+                  "type" : "ExpressionRef"
+               } ]
+            }
+         }, {
+            "name" : "PatientAgeInYears",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "precision" : "Year",
+               "type" : "CalculateAge",
+               "operand" : {
+                  "path" : "birthDate.value",
+                  "type" : "Property",
+                  "source" : {
+                     "name" : "Patient",
+                     "type" : "ExpressionRef"
+                  }
+               }
+            }
+         }, {
+            "name" : "IsOverweight",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "GreaterOrEqual",
+               "operand" : [ {
+                  "name" : "MostRecentBodyMassIndexValue",
+                  "type" : "ExpressionRef"
+               }, {
+                  "value" : 25,
+                  "unit" : "kg/m2",
+                  "type" : "Quantity"
+               } ]
+            }
+         }, {
+            "name" : "IsOverweightAsianThreshold",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "GreaterOrEqual",
+               "operand" : [ {
+                  "name" : "MostRecentBodyMassIndexValue",
+                  "type" : "ExpressionRef"
+               }, {
+                  "value" : 23,
+                  "unit" : "kg/m2",
+                  "type" : "Quantity"
+               } ]
+            }
+         }, {
+            "name" : "HasFamilyHistoryOfDiabetes",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Exists",
+               "operand" : {
+                  "type" : "Query",
+                  "source" : [ {
+                     "alias" : "History",
+                     "expression" : {
+                        "dataType" : "{http://hl7.org/fhir}FamilyMemberHistory",
+                        "templateId" : "http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory",
+                        "codeProperty" : "relationship",
+                        "codeComparator" : "in",
+                        "type" : "Retrieve",
+                        "codes" : {
+                           "name" : "First Degree Family Member",
+                           "preserve" : true,
+                           "type" : "ValueSetRef"
+                        }
+                     }
+                  } ],
+                  "relationship" : [ ],
+                  "where" : {
+                     "type" : "AnyInValueSet",
+                     "codes" : {
+                        "type" : "Query",
+                        "source" : [ {
+                           "alias" : "X",
+                           "expression" : {
+                              "type" : "Query",
+                              "source" : [ {
+                                 "alias" : "$this",
+                                 "expression" : {
+                                    "path" : "condition",
+                                    "scope" : "History",
+                                    "type" : "Property"
+                                 }
+                              } ],
+                              "where" : {
+                                 "type" : "Not",
+                                 "operand" : {
+                                    "type" : "IsNull",
+                                    "operand" : {
+                                       "path" : "code",
+                                       "type" : "Property",
+                                       "source" : {
+                                          "name" : "$this",
+                                          "type" : "AliasRef"
+                                       }
+                                    }
+                                 }
+                              },
+                              "return" : {
+                                 "distinct" : false,
+                                 "expression" : {
+                                    "path" : "code",
+                                    "type" : "Property",
+                                    "source" : {
+                                       "name" : "$this",
+                                       "type" : "AliasRef"
+                                    }
+                                 }
+                              }
+                           }
+                        } ],
+                        "return" : {
+                           "distinct" : false,
+                           "expression" : {
+                              "name" : "ToConcept",
+                              "libraryName" : "FHIRHelpers",
+                              "type" : "FunctionRef",
+                              "operand" : [ {
+                                 "name" : "X",
+                                 "type" : "AliasRef"
+                              } ]
+                           }
+                        }
+                     },
+                     "valueset" : {
+                        "name" : "Diabetes",
+                        "preserve" : true
+                     }
+                  }
+               }
+            }
+         }, {
+            "name" : "HasPolycysticOvarySyndrome",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Exists",
+               "operand" : {
+                  "name" : "Confirmed",
+                  "libraryName" : "C3F",
+                  "type" : "FunctionRef",
+                  "operand" : [ {
+                     "type" : "Union",
+                     "operand" : [ {
+                        "dataType" : "{http://hl7.org/fhir}Condition",
+                        "templateId" : "http://hl7.org/fhir/StructureDefinition/Condition",
+                        "codeProperty" : "code",
+                        "codeComparator" : "in",
+                        "type" : "Retrieve",
+                        "codes" : {
+                           "name" : "Polycystic Ovary Syndrome",
+                           "preserve" : true,
+                           "type" : "ValueSetRef"
+                        }
+                     }, {
+                        "dataType" : "{http://hl7.org/fhir}Condition",
+                        "templateId" : "http://hl7.org/fhir/StructureDefinition/Condition",
+                        "codeProperty" : "code",
+                        "codeComparator" : "~",
+                        "type" : "Retrieve",
+                        "codes" : {
+                           "path" : "codes",
+                           "type" : "Property",
+                           "source" : {
+                              "name" : "Polycystic ovarian syndrome",
+                              "type" : "ConceptRef"
+                           }
+                        }
+                     } ]
+                  } ]
+               }
+            }
+         }, {
+            "name" : "HasOtherRiskFactors",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Or",
+               "operand" : [ {
+                  "type" : "Or",
+                  "operand" : [ {
+                     "type" : "Or",
+                     "operand" : [ {
+                        "type" : "Or",
+                        "operand" : [ {
+                           "type" : "Or",
+                           "operand" : [ {
+                              "name" : "HasFamilyHistoryOfDiabetes",
+                              "type" : "ExpressionRef"
+                           }, {
+                              "name" : "HasPolycysticOvarySyndrome",
+                              "type" : "ExpressionRef"
+                           } ]
+                        }, {
+                           "name" : "IsAfricanAmerican",
+                           "type" : "ExpressionRef"
+                        } ]
+                     }, {
+                        "name" : "IsAmericanIndianOrAlaskaNative",
+                        "type" : "ExpressionRef"
+                     } ]
+                  }, {
+                     "name" : "IsNativeHawaiianOrOtherPacificIslander",
+                     "type" : "ExpressionRef"
+                  } ]
+               }, {
+                  "name" : "IsHispanicOrLatino",
+                  "type" : "ExpressionRef"
+               } ]
+            }
+         }, {
+            "name" : "HadGestationalDiabetes",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Exists",
+               "operand" : {
+                  "name" : "Confirmed",
+                  "libraryName" : "C3F",
+                  "type" : "FunctionRef",
+                  "operand" : [ {
+                     "dataType" : "{http://hl7.org/fhir}Condition",
+                     "templateId" : "http://hl7.org/fhir/StructureDefinition/Condition",
+                     "codeProperty" : "code",
+                     "codeComparator" : "in",
+                     "type" : "Retrieve",
+                     "codes" : {
+                        "name" : "Gestational diabetes",
+                        "preserve" : true,
+                        "type" : "ValueSetRef"
+                     }
+                  } ]
+               }
+            }
+         }, {
+            "name" : "MeetsPartOneInclusionLogic",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Or",
+               "operand" : [ {
+                  "type" : "Or",
+                  "operand" : [ {
+                     "type" : "Or",
+                     "operand" : [ {
+                        "type" : "And",
+                        "operand" : [ {
+                           "type" : "And",
+                           "operand" : [ {
+                              "type" : "GreaterOrEqual",
+                              "operand" : [ {
+                                 "name" : "PatientAgeInYears",
+                                 "type" : "ExpressionRef"
+                              }, {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                                 "value" : "35",
+                                 "type" : "Literal"
+                              } ]
+                           }, {
+                              "type" : "LessOrEqual",
+                              "operand" : [ {
+                                 "name" : "PatientAgeInYears",
+                                 "type" : "ExpressionRef"
+                              }, {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                                 "value" : "70",
+                                 "type" : "Literal"
+                              } ]
+                           } ]
+                        }, {
+                           "name" : "IsOverweight",
+                           "type" : "ExpressionRef"
+                        } ]
+                     }, {
+                        "type" : "And",
+                        "operand" : [ {
+                           "type" : "And",
+                           "operand" : [ {
+                              "type" : "And",
+                              "operand" : [ {
+                                 "type" : "GreaterOrEqual",
+                                 "operand" : [ {
+                                    "name" : "PatientAgeInYears",
+                                    "type" : "ExpressionRef"
+                                 }, {
+                                    "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                                    "value" : "18",
+                                    "type" : "Literal"
+                                 } ]
+                              }, {
+                                 "type" : "Less",
+                                 "operand" : [ {
+                                    "name" : "PatientAgeInYears",
+                                    "type" : "ExpressionRef"
+                                 }, {
+                                    "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                                    "value" : "35",
+                                    "type" : "Literal"
+                                 } ]
+                              } ]
+                           }, {
+                              "name" : "IsOverweight",
+                              "type" : "ExpressionRef"
+                           } ]
+                        }, {
+                           "name" : "HasOtherRiskFactors",
+                           "type" : "ExpressionRef"
+                        } ]
+                     } ]
+                  }, {
+                     "type" : "And",
+                     "operand" : [ {
+                        "type" : "And",
+                        "operand" : [ {
+                           "type" : "And",
+                           "operand" : [ {
+                              "type" : "GreaterOrEqual",
+                              "operand" : [ {
+                                 "name" : "PatientAgeInYears",
+                                 "type" : "ExpressionRef"
+                              }, {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                                 "value" : "18",
+                                 "type" : "Literal"
+                              } ]
+                           }, {
+                              "type" : "LessOrEqual",
+                              "operand" : [ {
+                                 "name" : "PatientAgeInYears",
+                                 "type" : "ExpressionRef"
+                              }, {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                                 "value" : "70",
+                                 "type" : "Literal"
+                              } ]
+                           } ]
+                        }, {
+                           "name" : "IsOverweightAsianThreshold",
+                           "type" : "ExpressionRef"
+                        } ]
+                     }, {
+                        "name" : "IsAsian",
+                        "type" : "ExpressionRef"
+                     } ]
+                  } ]
+               }, {
+                  "type" : "And",
+                  "operand" : [ {
+                     "type" : "And",
+                     "operand" : [ {
+                        "type" : "GreaterOrEqual",
+                        "operand" : [ {
+                           "name" : "PatientAgeInYears",
+                           "type" : "ExpressionRef"
+                        }, {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                           "value" : "18",
+                           "type" : "Literal"
+                        } ]
+                     }, {
+                        "type" : "LessOrEqual",
+                        "operand" : [ {
+                           "name" : "PatientAgeInYears",
+                           "type" : "ExpressionRef"
+                        }, {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                           "value" : "70",
+                           "type" : "Literal"
+                        } ]
+                     } ]
+                  }, {
+                     "name" : "HadGestationalDiabetes",
+                     "type" : "ExpressionRef"
+                  } ]
+               } ]
+            }
+         }, {
+            "name" : "HasDiabetes",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Exists",
+               "operand" : {
+                  "name" : "Confirmed",
+                  "libraryName" : "C3F",
+                  "type" : "FunctionRef",
+                  "operand" : [ {
+                     "name" : "ActiveOrRecurring",
+                     "libraryName" : "C3F",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "name" : "ConditionLookBack",
+                        "libraryName" : "C3F",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "dataType" : "{http://hl7.org/fhir}Condition",
+                           "templateId" : "http://hl7.org/fhir/StructureDefinition/Condition",
+                           "codeProperty" : "code",
+                           "codeComparator" : "in",
+                           "type" : "Retrieve",
+                           "codes" : {
+                              "name" : "Diabetes",
+                              "preserve" : true,
+                              "type" : "ValueSetRef"
+                           }
+                        }, {
+                           "value" : 12,
+                           "unit" : "months",
+                           "type" : "Quantity"
+                        } ]
+                     } ]
+                  } ]
+               }
+            }
+         }, {
+            "name" : "MostRecentPregnancyObservation",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "name" : "MostRecent",
+               "libraryName" : "C3F",
+               "type" : "FunctionRef",
+               "operand" : [ {
+                  "name" : "Verified",
+                  "libraryName" : "C3F",
+                  "type" : "FunctionRef",
+                  "operand" : [ {
+                     "name" : "ObservationLookBack",
+                     "libraryName" : "C3F",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "dataType" : "{http://hl7.org/fhir}Observation",
+                        "templateId" : "http://hl7.org/fhir/StructureDefinition/Observation",
+                        "codeProperty" : "code",
+                        "codeComparator" : "~",
+                        "type" : "Retrieve",
+                        "codes" : {
+                           "type" : "ToList",
+                           "operand" : {
+                              "name" : "Pregnancy status",
+                              "type" : "CodeRef"
+                           }
+                        }
+                     }, {
+                        "value" : 42,
+                        "unit" : "weeks",
+                        "type" : "Quantity"
+                     } ]
+                  } ]
+               } ]
+            }
+         }, {
+            "name" : "IsPregnant",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Or",
+               "operand" : [ {
+                  "type" : "Exists",
+                  "operand" : {
+                     "name" : "Confirmed",
+                     "libraryName" : "C3F",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "name" : "ActiveCondition",
+                        "libraryName" : "C3F",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "dataType" : "{http://hl7.org/fhir}Condition",
+                           "templateId" : "http://hl7.org/fhir/StructureDefinition/Condition",
+                           "codeProperty" : "code",
+                           "codeComparator" : "in",
+                           "type" : "Retrieve",
+                           "codes" : {
+                              "name" : "CDS Pregnancy",
+                              "preserve" : true,
+                              "type" : "ValueSetRef"
+                           }
+                        } ]
+                     } ]
+                  }
+               }, {
+                  "type" : "Equivalent",
+                  "operand" : [ {
+                     "name" : "ConceptValue",
+                     "libraryName" : "C3F",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "name" : "MostRecentPregnancyObservation",
+                        "type" : "ExpressionRef"
+                     } ]
+                  }, {
+                     "type" : "ToConcept",
+                     "operand" : {
+                        "name" : "Pregnant",
+                        "type" : "CodeRef"
+                     }
+                  } ]
+               } ]
+            }
+         } ]
+      }
+   }
+}
+

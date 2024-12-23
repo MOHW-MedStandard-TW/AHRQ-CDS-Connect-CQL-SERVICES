@@ -1,0 +1,12 @@
+services:
+  cql:
+    image: cql-services
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      UMLS_API_KEY: 00bab7cb-a811-461f-bd8a-6e8617ee9e20
+      CQL_SERVICES_MAX_REQUEST_SIZE: 2mb
+    volumes:
+      - ./config:/usr/src/app/config
+    restart: always

@@ -1,0 +1,44 @@
+{
+  "id": "USPSTFPrediabetesAndType2DiabetesPart1ScreeningFHIRv401",
+  "hook": "patient-view",
+  "title": "USPSTF Prediabetes And Type2 Diabetes Part1 Screening",
+  "description": "Derived from USPSTF guideline Prediabetes and Type 2 Diabetes: Screening",
+  "_config": {
+    "cards": [
+      {
+        "conditionExpression": "InPopulation",
+        "card": {
+          "summary": "Notification: USPSTF Prediabetes And Type2 Diabetes Part1 Screening",
+          "indicator": "info",
+          "detail": "${Notification}",
+          "source": {
+            "label": "USPSTF Prediabetes And Type2 Diabetes Part1 Screening",
+            "url": "https://cds.ahrq.gov/cdsconnect/source/uspstf-recommendation-statement-prediabetes-and-type-2-diabetes-screening"
+          }
+        }
+      },
+      {
+        "conditionExpression": "InPopulation",
+        "card": {
+          "summary": "Recommendation: USPSTF Prediabetes And Type2 Diabetes Part1 Screening",
+          "indicator": "info",
+          "detail": "${Recommendation}",
+          "source": {
+            "label": "USPSTF Prediabetes And Type2 Diabetes Part1 Screening",
+            "url": "https://cds.ahrq.gov/cdsconnect/source/uspstf-recommendation-statement-prediabetes-and-type-2-diabetes-screening"
+          },
+          "extension":{
+            "Excluded":"${Excluded}",
+            "IsPregnant":"${SharedLogic.IsPregnant}"
+          }
+        }
+      }
+    ],
+    "cql": {
+      "library": {
+        "id": "USPSTFPrediabetesAndType2DiabetesPart1ScreeningFHIRv401",
+        "version": "2.1.0"
+      }
+    }
+  }
+}

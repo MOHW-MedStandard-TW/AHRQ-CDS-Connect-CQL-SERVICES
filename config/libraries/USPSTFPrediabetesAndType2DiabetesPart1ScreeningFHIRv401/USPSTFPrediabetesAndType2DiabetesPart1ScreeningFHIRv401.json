@@ -1,0 +1,579 @@
+{
+   "library" : {
+      "annotation" : [ {
+         "translatorVersion" : "2.9.0",
+         "translatorOptions" : "",
+         "type" : "CqlToElmInfo"
+      } ],
+      "identifier" : {
+         "id" : "USPSTFPrediabetesAndType2DiabetesPart1ScreeningFHIRv401",
+         "version" : "2.1.0"
+      },
+      "schemaIdentifier" : {
+         "id" : "urn:hl7-org:elm",
+         "version" : "r1"
+      },
+      "usings" : {
+         "def" : [ {
+            "localIdentifier" : "System",
+            "uri" : "urn:hl7-org:elm-types:r1"
+         }, {
+            "localIdentifier" : "FHIR",
+            "uri" : "http://hl7.org/fhir",
+            "version" : "4.0.1"
+         } ]
+      },
+      "includes" : {
+         "def" : [ {
+            "localIdentifier" : "FHIRHelpers",
+            "path" : "FHIRHelpers",
+            "version" : "4.0.1"
+         }, {
+            "localIdentifier" : "C3F",
+            "path" : "CDSConnectCommonsForFHIRv401",
+            "version" : "2.1.0"
+         }, {
+            "localIdentifier" : "SharedLogic",
+            "path" : "USPSTFPrediabetesAndType2DiabetesSharedLogicFHIRv401",
+            "version" : "1.1.0"
+         } ]
+      },
+      "codeSystems" : {
+         "def" : [ {
+            "name" : "LOINC",
+            "id" : "http://loinc.org",
+            "accessLevel" : "Public"
+         }, {
+            "name" : "SNOMED-CT",
+            "id" : "http://snomed.info/sct",
+            "accessLevel" : "Public"
+         }, {
+            "name" : "ICD-10-CM",
+            "id" : "http://hl7.org/fhir/sid/icd-10-cm",
+            "accessLevel" : "Public"
+         } ]
+      },
+      "valueSets" : {
+         "def" : [ {
+            "name" : "Impaired Glucose Tolerance",
+            "id" : "https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1032.85",
+            "accessLevel" : "Public"
+         }, {
+            "name" : "Fasting Plasma Glucose",
+            "id" : "https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1032.87",
+            "accessLevel" : "Public"
+         }, {
+            "name" : "Prediabetes",
+            "id" : "https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1221.113",
+            "accessLevel" : "Public"
+         }, {
+            "name" : "Glucose Tolerance Test Results",
+            "id" : "https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1032.94",
+            "accessLevel" : "Public"
+         } ]
+      },
+      "codes" : {
+         "def" : [ {
+            "name" : "HgA1C laboratory test",
+            "id" : "4548-4",
+            "display" : "Hemoglobin A1c/​Hemoglobin.total in Blood",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "LOINC"
+            }
+         }, {
+            "name" : "Impaired fasting glucose ICD-10-CM code",
+            "id" : "R73.01",
+            "display" : "Impaired fasting glucose",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "ICD-10-CM"
+            }
+         }, {
+            "name" : "Impaired fasting glucose SNOMED-CT code",
+            "id" : "390951007",
+            "display" : "Impaired fasting glycaemia (disorder)",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "SNOMED-CT"
+            }
+         }, {
+            "name" : "Impaired glucose tolerance ICD-10-CM code",
+            "id" : "R73.02",
+            "display" : "Impaired glucose tolerance (oral)",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "ICD-10-CM"
+            }
+         } ]
+      },
+      "concepts" : {
+         "def" : [ {
+            "name" : "Impaired Fasting Glucose (IFG)",
+            "display" : "Impaired fasting glucose",
+            "accessLevel" : "Public",
+            "code" : [ {
+               "name" : "Impaired fasting glucose ICD-10-CM code"
+            }, {
+               "name" : "Impaired fasting glucose SNOMED-CT code"
+            } ]
+         } ]
+      },
+      "contexts" : {
+         "def" : [ {
+            "name" : "Patient"
+         } ]
+      },
+      "statements" : {
+         "def" : [ {
+            "name" : "Patient",
+            "context" : "Patient",
+            "expression" : {
+               "type" : "SingletonFrom",
+               "operand" : {
+                  "dataType" : "{http://hl7.org/fhir}Patient",
+                  "templateId" : "http://hl7.org/fhir/StructureDefinition/Patient",
+                  "type" : "Retrieve"
+               }
+            }
+         }, {
+            "name" : "RecentA1cOrGlucoseTests",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "name" : "Verified",
+               "libraryName" : "C3F",
+               "type" : "FunctionRef",
+               "operand" : [ {
+                  "name" : "ObservationLookBack",
+                  "libraryName" : "C3F",
+                  "type" : "FunctionRef",
+                  "operand" : [ {
+                     "type" : "Union",
+                     "operand" : [ {
+                        "type" : "Union",
+                        "operand" : [ {
+                           "dataType" : "{http://hl7.org/fhir}Observation",
+                           "templateId" : "http://hl7.org/fhir/StructureDefinition/Observation",
+                           "codeProperty" : "code",
+                           "codeComparator" : "in",
+                           "type" : "Retrieve",
+                           "codes" : {
+                              "name" : "Fasting Plasma Glucose",
+                              "preserve" : true,
+                              "type" : "ValueSetRef"
+                           }
+                        }, {
+                           "dataType" : "{http://hl7.org/fhir}Observation",
+                           "templateId" : "http://hl7.org/fhir/StructureDefinition/Observation",
+                           "codeProperty" : "code",
+                           "codeComparator" : "in",
+                           "type" : "Retrieve",
+                           "codes" : {
+                              "name" : "Glucose Tolerance Test Results",
+                              "preserve" : true,
+                              "type" : "ValueSetRef"
+                           }
+                        } ]
+                     }, {
+                        "dataType" : "{http://hl7.org/fhir}Observation",
+                        "templateId" : "http://hl7.org/fhir/StructureDefinition/Observation",
+                        "codeProperty" : "code",
+                        "codeComparator" : "~",
+                        "type" : "Retrieve",
+                        "codes" : {
+                           "type" : "ToList",
+                           "operand" : {
+                              "name" : "HgA1C laboratory test",
+                              "type" : "CodeRef"
+                           }
+                        }
+                     } ]
+                  }, {
+                     "value" : 3,
+                     "unit" : "years",
+                     "type" : "Quantity"
+                  } ]
+               } ]
+            }
+         }, {
+            "name" : "HasHadRecentA1cOrGlucoseTests",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Exists",
+               "operand" : {
+                  "name" : "RecentA1cOrGlucoseTests",
+                  "type" : "ExpressionRef"
+               }
+            }
+         }, {
+            "name" : "HasPrediabetes",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Exists",
+               "operand" : {
+                  "name" : "Confirmed",
+                  "libraryName" : "C3F",
+                  "type" : "FunctionRef",
+                  "operand" : [ {
+                     "name" : "ActiveOrRecurring",
+                     "libraryName" : "C3F",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "name" : "ConditionLookBack",
+                        "libraryName" : "C3F",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "dataType" : "{http://hl7.org/fhir}Condition",
+                           "templateId" : "http://hl7.org/fhir/StructureDefinition/Condition",
+                           "codeProperty" : "code",
+                           "codeComparator" : "in",
+                           "type" : "Retrieve",
+                           "codes" : {
+                              "name" : "Prediabetes",
+                              "preserve" : true,
+                              "type" : "ValueSetRef"
+                           }
+                        }, {
+                           "value" : 12,
+                           "unit" : "months",
+                           "type" : "Quantity"
+                        } ]
+                     } ]
+                  } ]
+               }
+            }
+         }, {
+            "name" : "HasImpairedFastingGlucose",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Exists",
+               "operand" : {
+                  "name" : "Confirmed",
+                  "libraryName" : "C3F",
+                  "type" : "FunctionRef",
+                  "operand" : [ {
+                     "name" : "ActiveOrRecurring",
+                     "libraryName" : "C3F",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "name" : "ConditionLookBack",
+                        "libraryName" : "C3F",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "dataType" : "{http://hl7.org/fhir}Condition",
+                           "templateId" : "http://hl7.org/fhir/StructureDefinition/Condition",
+                           "codeProperty" : "code",
+                           "codeComparator" : "~",
+                           "type" : "Retrieve",
+                           "codes" : {
+                              "path" : "codes",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "Impaired Fasting Glucose (IFG)",
+                                 "type" : "ConceptRef"
+                              }
+                           }
+                        }, {
+                           "value" : 12,
+                           "unit" : "months",
+                           "type" : "Quantity"
+                        } ]
+                     } ]
+                  } ]
+               }
+            }
+         }, {
+            "name" : "HasImpairedGlucoseTolerance",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Exists",
+               "operand" : {
+                  "name" : "Confirmed",
+                  "libraryName" : "C3F",
+                  "type" : "FunctionRef",
+                  "operand" : [ {
+                     "name" : "ActiveOrRecurring",
+                     "libraryName" : "C3F",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "name" : "ConditionLookBack",
+                        "libraryName" : "C3F",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "type" : "Union",
+                           "operand" : [ {
+                              "dataType" : "{http://hl7.org/fhir}Condition",
+                              "templateId" : "http://hl7.org/fhir/StructureDefinition/Condition",
+                              "codeProperty" : "code",
+                              "codeComparator" : "~",
+                              "type" : "Retrieve",
+                              "codes" : {
+                                 "type" : "ToList",
+                                 "operand" : {
+                                    "name" : "Impaired glucose tolerance ICD-10-CM code",
+                                    "type" : "CodeRef"
+                                 }
+                              }
+                           }, {
+                              "dataType" : "{http://hl7.org/fhir}Condition",
+                              "templateId" : "http://hl7.org/fhir/StructureDefinition/Condition",
+                              "codeProperty" : "code",
+                              "codeComparator" : "in",
+                              "type" : "Retrieve",
+                              "codes" : {
+                                 "name" : "Impaired Glucose Tolerance",
+                                 "preserve" : true,
+                                 "type" : "ValueSetRef"
+                              }
+                           } ]
+                        }, {
+                           "value" : 12,
+                           "unit" : "months",
+                           "type" : "Quantity"
+                        } ]
+                     } ]
+                  } ]
+               }
+            }
+         }, {
+            "name" : "Excluded",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Or",
+               "operand" : [ {
+                  "type" : "Or",
+                  "operand" : [ {
+                     "type" : "Or",
+                     "operand" : [ {
+                        "type" : "Or",
+                        "operand" : [ {
+                           "type" : "Or",
+                           "operand" : [ {
+                              "name" : "IsPregnant",
+                              "libraryName" : "SharedLogic",
+                              "type" : "ExpressionRef"
+                           }, {
+                              "name" : "HasHadRecentA1cOrGlucoseTests",
+                              "type" : "ExpressionRef"
+                           } ]
+                        }, {
+                           "name" : "HasPrediabetes",
+                           "type" : "ExpressionRef"
+                        } ]
+                     }, {
+                        "name" : "HasDiabetes",
+                        "libraryName" : "SharedLogic",
+                        "type" : "ExpressionRef"
+                     } ]
+                  }, {
+                     "name" : "HasImpairedFastingGlucose",
+                     "type" : "ExpressionRef"
+                  } ]
+               }, {
+                  "name" : "HasImpairedGlucoseTolerance",
+                  "type" : "ExpressionRef"
+               } ]
+            }
+         }, {
+            "name" : "InPopulation",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "And",
+               "operand" : [ {
+                  "name" : "MeetsPartOneInclusionLogic",
+                  "libraryName" : "SharedLogic",
+                  "type" : "ExpressionRef"
+               }, {
+                  "type" : "Not",
+                  "operand" : {
+                     "name" : "Excluded",
+                     "type" : "ExpressionRef"
+                  }
+               } ]
+            }
+         }, {
+            "name" : "Notification",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "If",
+               "condition" : {
+                  "name" : "InPopulation",
+                  "type" : "ExpressionRef"
+               },
+               "then" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                  "value" : "You may be at risk for (in other words, more likely to get) prediabetes and type 2 diabetes based on risk factors you may have.\n\nMany factors increase a person’s risk for high blood sugar including: being 35 years or older; being overweight or obese; having a parent, brother or sister with diabetes; or if you are a woman with a history of  diabetes while pregnant (gestational diabetes) or polycystic ovarian syndrome (a condition where the ovaries produce higher-than-normal amounts of certain hormones). If you are African-American, Hispanic, Alaskan Native, American Indian, Asian American, or Native Hawaiian/Pacific Islander you may also be more likely to have high blood sugar.",
+                  "type" : "Literal"
+               },
+               "else" : {
+                  "asType" : "{urn:hl7-org:elm-types:r1}String",
+                  "type" : "As",
+                  "operand" : {
+                     "type" : "Null"
+                  }
+               }
+            }
+         }, {
+            "name" : "Recommendation",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "If",
+               "condition" : {
+                  "name" : "InPopulation",
+                  "type" : "ExpressionRef"
+               },
+               "then" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                  "value" : "Experts (i.e., The U.S. Preventive Services Task Force) recommend blood tests to measure blood sugar levels if you are at increased risk. If the tests show you have high blood sugar (prediabetes), there are steps you can take to help lower your blood sugar and prevent diabetes.\n\nContact your doctor to schedule an appointment and ask about being tested for high blood sugar and diabetes.\n\nHere are some links to resources you may want to review:\n\n* [Prediabetes: Your chance to prevent Type 2 diabetes](https://www.cdc.gov/diabetes/basics/prediabetes.html)\n* [Take steps to prevent type 2 diabetes](https://healthfinder.gov/HealthTopics/Category/health-conditions-and-diseases/diabetes/take-steps-to-prevent-type-2-diabetes)\n* [The U.S. Preventive Services Task Force Recommendation on “Prediabetes and Type 2 Diabetes: Screening”](https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/screening-for-prediabetes-and-type-2-diabetes)",
+                  "type" : "Literal"
+               },
+               "else" : {
+                  "asType" : "{urn:hl7-org:elm-types:r1}String",
+                  "type" : "As",
+                  "operand" : {
+                     "type" : "Null"
+                  }
+               }
+            }
+         }, {
+            "name" : "Information",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Query",
+               "source" : [ {
+                  "alias" : "Info",
+                  "expression" : {
+                     "type" : "List",
+                     "element" : [ {
+                        "type" : "If",
+                        "condition" : {
+                           "type" : "Not",
+                           "operand" : {
+                              "type" : "Exists",
+                              "operand" : {
+                                 "name" : "RaceCodes",
+                                 "libraryName" : "SharedLogic",
+                                 "type" : "ExpressionRef"
+                              }
+                           }
+                        },
+                        "then" : {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                           "value" : "INFORMATION: No race information available.",
+                           "type" : "Literal"
+                        },
+                        "else" : {
+                           "asType" : "{urn:hl7-org:elm-types:r1}String",
+                           "type" : "As",
+                           "operand" : {
+                              "type" : "Null"
+                           }
+                        }
+                     }, {
+                        "type" : "If",
+                        "condition" : {
+                           "type" : "And",
+                           "operand" : [ {
+                              "type" : "Not",
+                              "operand" : {
+                                 "type" : "IsNull",
+                                 "operand" : {
+                                    "name" : "EthnicityCode",
+                                    "libraryName" : "SharedLogic",
+                                    "type" : "ExpressionRef"
+                                 }
+                              }
+                           }, {
+                              "type" : "Not",
+                              "operand" : {
+                                 "name" : "IsHispanicOrLatino",
+                                 "libraryName" : "SharedLogic",
+                                 "type" : "ExpressionRef"
+                              }
+                           } ]
+                        },
+                        "then" : {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                           "value" : "INFORMATION: Non-Hispanic or Latino ethnicity recorded.",
+                           "type" : "Literal"
+                        },
+                        "else" : {
+                           "asType" : "{urn:hl7-org:elm-types:r1}String",
+                           "type" : "As",
+                           "operand" : {
+                              "type" : "Null"
+                           }
+                        }
+                     }, {
+                        "type" : "If",
+                        "condition" : {
+                           "type" : "IsNull",
+                           "operand" : {
+                              "name" : "MostRecentBodyMassIndexMeasurement",
+                              "libraryName" : "SharedLogic",
+                              "type" : "ExpressionRef"
+                           }
+                        },
+                        "then" : {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                           "value" : "INFORMATION: No recent body mass index measurement available.",
+                           "type" : "Literal"
+                        },
+                        "else" : {
+                           "asType" : "{urn:hl7-org:elm-types:r1}String",
+                           "type" : "As",
+                           "operand" : {
+                              "type" : "Null"
+                           }
+                        }
+                     }, {
+                        "type" : "If",
+                        "condition" : {
+                           "type" : "IsNull",
+                           "operand" : {
+                              "name" : "RecentA1cOrGlucoseTests",
+                              "type" : "ExpressionRef"
+                           }
+                        },
+                        "then" : {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                           "value" : "INFORMATION: No recent A1c or glucose lab tests available.",
+                           "type" : "Literal"
+                        },
+                        "else" : {
+                           "asType" : "{urn:hl7-org:elm-types:r1}String",
+                           "type" : "As",
+                           "operand" : {
+                              "type" : "Null"
+                           }
+                        }
+                     } ]
+                  }
+               } ],
+               "relationship" : [ ],
+               "where" : {
+                  "type" : "Not",
+                  "operand" : {
+                     "type" : "IsNull",
+                     "operand" : {
+                        "name" : "Info",
+                        "type" : "AliasRef"
+                     }
+                  }
+               }
+            }
+         } ]
+      }
+   }
+}
+
