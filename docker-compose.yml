@@ -9,4 +9,5 @@ services:
       CQL_SERVICES_MAX_REQUEST_SIZE: 2mb
     volumes:
       - ./config:/usr/src/app/config
+      - ./valueset-db.json:/usr/src/app/.vsac_cache/valueset-db.json
     restart: always

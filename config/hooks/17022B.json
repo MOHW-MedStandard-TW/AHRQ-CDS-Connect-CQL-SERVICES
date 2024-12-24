@@ -1,0 +1,28 @@
+{
+  "id": "17022B",
+  "hook": "patient-view",
+  "title": "呼氣一氧化氮監測(FeNO)",
+  "description": "17022B 呼氣一氧化氮監測(FeNO)",
+  "_config": {
+    "cards": [
+      {
+        "conditionExpression": "InPopulation",
+        "card": {
+          "summary": "Recommendation: 17022B 呼氣一氧化氮監測(FeNO)",
+          "indicator": "info",
+          "detail": "${Recommendation}",
+          "source": {
+            "label": "17022B 呼氣一氧化氮監測(FeNO)",
+            "url": "https://info.nhi.gov.tw/INAE5000/INAE5001S03"
+          }
+        }
+      }
+    ],
+    "cql": {
+      "library": {
+        "id": "17022B",
+        "version": "0.0.1"
+      }
+    }
+  }
+}
