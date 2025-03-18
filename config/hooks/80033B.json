@@ -1,18 +1,18 @@
 {
-  "id": "17022B",
+  "id": "80033B",
   "hook": "patient-view",
-  "title": "呼氣一氧化氮監測(FeNO)",
-  "description": "17022B 呼氣一氧化氮監測(FeNO)",
+  "title": "經腹腔之骨盆底重建術",
+  "description": "80033B 經腹腔之骨盆底重建術",
   "_config": {
     "cards": [
       {
         "conditionExpression": "InPopulation",
         "card": {
-          "summary": "Recommendation: 17022B 呼氣一氧化氮監測(FeNO)",
+          "summary": "Recommendation: 80033B 經腹腔之骨盆底重建術",
           "indicator": "info",
           "detail": "${Recommendation}",
           "source": {
-            "label": "17022B 呼氣一氧化氮監測(FeNO)",
+            "label": "80033B 經腹腔之骨盆底重建術",
             "url": "https://info.nhi.gov.tw/INAE5000/INAE5001S01"
           }
         }
@@ -20,7 +20,7 @@
     ],
     "cql": {
       "library": {
-        "id": "17022B",
+        "id": "80033B",
         "version": "0.0.1"
       }
     }

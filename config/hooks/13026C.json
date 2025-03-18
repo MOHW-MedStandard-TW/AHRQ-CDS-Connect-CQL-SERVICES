@@ -1,0 +1,28 @@
+{
+  "id": "13026C",
+  "hook": "patient-view",
+  "title": "抗酸菌培養(限同時使用固態培養基及具自動化偵測功能之液態培養系統)",
+  "description": "13026C 抗酸菌培養(限同時使用固態培養基及具自動化偵測功能之液態培養系統)",
+  "_config": {
+    "cards": [
+      {
+        "conditionExpression": "InPopulation",
+        "card": {
+          "summary": "Recommendation: 13026C 抗酸菌培養(限同時使用固態培養基及具自動化偵測功能之液態培養系統)",
+          "indicator": "info",
+          "detail": "${Recommendation}",
+          "source": {
+            "label": "13026C 抗酸菌培養(限同時使用固態培養基及具自動化偵測功能之液態培養系統)",
+            "url": "https://info.nhi.gov.tw/INAE5000/INAE5001S01"
+          }
+        }
+      }
+    ],
+    "cql": {
+      "library": {
+        "id": "13026C",
+        "version": "0.0.1"
+      }
+    }
+  }
+}
