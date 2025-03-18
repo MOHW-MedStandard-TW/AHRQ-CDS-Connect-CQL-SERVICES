@@ -1,5 +1,17 @@
 # CQL Services
 
+## 啟動 Service Server
+
+### 啟動
+```bash
+docker compose up -d
+```
+
+### 看log
+```bash
+docker compose logs -f
+```
+
 ## About
 
 CQL Services is an Express.js application that provides RESTful services for executing CQL.  Currently two services are provided:
