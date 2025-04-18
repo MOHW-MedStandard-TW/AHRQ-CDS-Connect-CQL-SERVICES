@@ -1,4 +1,5 @@
 # CQL Services
+> **Note:** This is a modified version of [AHRQ-CDS/AHRQ-CDS-Connect-CQL-SERVICES](https://github.com/AHRQ-CDS/AHRQ-CDS-Connect-CQL-SERVICES). Modifications have been made in compliance with the Apache License Version 2.0.
 
 ## 啟動 Service Server
 
